@@ -217,7 +217,10 @@ function testSettingReader(){
       console.error(`シート名[${sheetName}]が取得できませんでした。`)
       return
     }
-  
+    if(sheetName == ""){
+        sheetName = "シート1"
+    }
+
     if(startCell == ""){
       startCell = "A1"
     }
