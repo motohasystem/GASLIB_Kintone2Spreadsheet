@@ -20,6 +20,11 @@ function run(){
 }
 ```
 
+## 簡単な使い方（分かる人用）
+
+以下のIDでライブラリを検索して、バージョン16以降をご利用ください。
+
+ ID: 144KrHx0lWnzZAARnKZM3X2-A4Q4xrN9UbpZEhsNI9hwm9eXbx4tj33df
 
 # 設定シートの書式
 
