@@ -107,11 +107,16 @@ function testSettingReader(){
   
     // kintone record形式を二次元配列に変換する
     convertToArray(rows, records){
-      const result = records.map((record)=>{
-        return rows.map((row)=>{
-          return record[row].value
+      try {
+        const result = records.map((record)=>{
+          return rows.map((row)=>{
+            return record[row].value
+          })
         })
-      })
+      }
+      catch(err){
+        throw new Error(`kintoneレコードの変換でエラーが発生しました。フィールドコードの指定を見直してください。[${err}]`)
+      }
   
       result.unshift(rows)
       return result
@@ -139,7 +144,7 @@ function testSettingReader(){
       let records = []
   
       const cursor = this.createCursor(data);
-      const records_data = this.getCursor(cursor.id);
+      let records_data = this.getCursor(cursor.id);
       // console.log(records_data.records);  //consoleにレコード情報を表示
       records = records.concat(records_data.records)
   
@@ -217,10 +222,7 @@ function testSettingReader(){
       console.error(`シート名[${sheetName}]が取得できませんでした。`)
       return
     }
-    if(sheetName == ""){
-        sheetName = "シート1"
-    }
-
+  
     if(startCell == ""){
       startCell = "A1"
     }
