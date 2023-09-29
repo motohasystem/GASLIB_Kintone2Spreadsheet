@@ -14,6 +14,20 @@ function testSettingReader(){
   
   }
   
+  function testGetAllRecords() {
+    const KINTONE_SUBDOMAIN = '';    // ① kintone サブドメイン
+    const KINTONE_APP_ID = '';          // ② kintone アプリID
+    const KINTONE_API_TOKEN  = '';    // ③ kintone APIトークン
+  
+    const accessor = new KintoneAccessor(KINTONE_SUBDOMAIN, KINTONE_APP_ID)
+    accessor.setApiToken(KINTONE_API_TOKEN)
+    accessor.setFields(["担当者名","住所","郵便番号(数字のみ)","TEL(数字のみ)","FAX(数字のみ)","メールアドレス","顧客ランク","備考"])
+  
+    const records = accessor.getAllRecordsOnArray()
+    console.log(records)
+  }
+  
+  
   // 指定したシート名から設定値を取得する
   class SettingReader {
   
@@ -107,8 +121,9 @@ function testSettingReader(){
   
     // kintone record形式を二次元配列に変換する
     convertToArray(rows, records){
+      let result
       try {
-        const result = records.map((record)=>{
+        result = records.map((record)=>{
           return rows.map((row)=>{
             return record[row].value
           })
@@ -150,6 +165,7 @@ function testSettingReader(){
   
       //レコード情報をすべて取得するまで繰り返す
       while(records_data.next){
+        console.log(cursor.id)
         records_data = this.getCursor(cursor.id);
         // console.log(records_data.records);//consoleにレコード情報を表示
         records = records.concat(records_data.records)
