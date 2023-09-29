@@ -7,7 +7,7 @@ kintoneのレコードをGoogleスプレッドシートに流し込むライブ�
 // kintone の設定
 const KINTONE_SUBDOMAIN = '<SUBDOMAIN>';    // ① kintone サブドメイン、xxxx.cybozu.comのxxxx部分を設定してください。
 const KINTONE_APP_ID = '<APP ID>';          // ② kintone アプリID
-const KINTONE_API_TOKEN  = '<API Token>';    // ③ kintone APIトークン、読み取り権限だけでOKです。
+const KINTONE_API_TOKEN  = PropertiesService.getScriptProperties().getProperty("API_TOKEN");    // ③ kintone APIトークンは読み取り権限だけでOKです。スクリプトプロパティにAPI_TOKENキーで登録してください。
 
 
 function run(){
